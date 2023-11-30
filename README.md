@@ -1,7 +1,17 @@
-# adventofcode2023
-Advent of Code 2023 Solutions
+# Advent of Code 2023
 
-Current Coverage Result: [![codecov](https://codecov.io/gh/sfmiked/adventofcode2023/graph/badge.svg?token=63MRY6V67B)](https://codecov.io/gh/sfmiked/adventofcode2023)
+This year, after much debate I will be using golang for the annual [advent of code](https://adventofcode.com/2023) competition. 
+
+While this is a repeat of 2020, golang and it's ecosystem seems to have moved on quite a bit since then.
+
+Of the features I know about, generics is the one that I expect will be the most useful.
+
+While I have in previous years created test cases, this year I've been challenged to stick to a more tdd-focused approach (rather than simply test to execute). 
+
+## Badges
+![Build Status](https://github.com/sfmiked/adventofcode2023/actions/workflows/go.yml/badge.svg)
+[![codecov](https://codecov.io/gh/sfmiked/adventofcode2023/graph/badge.svg?token=63MRY6V67B)](https://codecov.io/gh/sfmiked/adventofcode2023)
+
 
 ## setup steps
 
