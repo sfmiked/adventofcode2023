@@ -25,9 +25,9 @@ func TestFileInt(t *testing.T) {
 	assert.Nil(t, err)
 
 	assert.Equal(t, len(v), 3)
-	assert.Equal(t, v[0], 1000)
-	assert.Equal(t, v[1], 2000)
-	assert.Equal(t, v[2], 3000)
+	assert.Equal(t, v[0], int(1000))
+	assert.Equal(t, v[1], int(2000))
+	assert.Equal(t, v[2], int(3000))
 }
 
 func TestFileInt64(t *testing.T) {
@@ -38,6 +38,11 @@ func TestFileInt64(t *testing.T) {
 	assert.Equal(t, v[0], int64(9223372036854775801))
 	assert.Equal(t, v[1], int64(9223372036854775802))
 	assert.Equal(t, v[2], int64(9223372036854775803))
+}
+
+func TestFileIntOverflow(t *testing.T) {
+	_, err := ReadFileAsInt("testdata/file_lines_64.txt")
+	assert.NotNil(t, err)
 }
 
 func TestFileDoesNotExist(t *testing.T) {

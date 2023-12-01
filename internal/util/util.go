@@ -36,7 +36,6 @@ func ReadFileAsInt(name string) ([]int, error) {
 		if err != nil {
 			return 0, err
 		}
-		// result is actually int64 type
 		return int(result), nil
 	})
 }

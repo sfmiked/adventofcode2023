@@ -22,6 +22,9 @@ go mod init github.com/miketzian/adventofcode2023
 
 # add testify dependency
 go get github.com/stretchr/testify
+
+# add cobra dependency for cli
+go get -u github.com/spf13/cobra@latest
 ```
 
 ### devcontainer
