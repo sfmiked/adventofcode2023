@@ -7,6 +7,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
+var inputFile string
 var rootCmd = &cobra.Command{
 	Use:   "aoc2023",
 	Short: "Advent of Code 2023 Solver",

@@ -9,7 +9,6 @@ import (
 )
 
 var onlyDigits bool
-var inputFile string
 var day1Cmd = &cobra.Command{
 	Use:   "day1",
 	Short: "Solve the Day 1 Puzzle",
