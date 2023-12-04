@@ -140,3 +140,13 @@ func TestCloseFile(t *testing.T) {
 	err = maybeCloseFile(file)
 	assert.NotNil(t, err)
 }
+
+func TestIndexOf(t *testing.T) {
+
+	arr := []int{1, 2, 3}
+
+	assert.Equal(t, 0, IndexOf(arr, 1))
+	assert.Equal(t, 1, IndexOf(arr, 2))
+	assert.Equal(t, 2, IndexOf(arr, 3))
+	assert.Equal(t, -1, IndexOf(arr, 4))
+}

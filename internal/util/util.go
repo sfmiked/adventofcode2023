@@ -89,3 +89,12 @@ func readToArray[V comparable](input io.Reader, parser func(string) (V, error)) 
 	// log.Printf("Output: %v", output)
 	return output, nil
 }
+
+func IndexOf[T comparable](collection []T, el T) int {
+	for i, x := range collection {
+		if x == el {
+			return i
+		}
+	}
+	return -1
+}
