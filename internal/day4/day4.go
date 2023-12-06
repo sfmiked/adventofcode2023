@@ -2,7 +2,6 @@ package day4
 
 import (
 	"errors"
-	"fmt"
 	"strconv"
 	"strings"
 	"text/scanner"
@@ -77,7 +76,6 @@ func (card *Scratchcard) MatchingNos() int {
 	for _, no := range card.my_nos {
 		if card.IsWinningNo(no) {
 			matching += 1
-			fmt.Printf("%d is winning\n", no)
 		}
 	}
 	return matching
@@ -138,9 +136,7 @@ func ParseScratchcard(input string) (*Scratchcard, error) {
 			found_pipe = true
 			continue
 		}
-
 		// fmt.Printf("Card Token [%s] [%v]\n", s.TokenText(), found_pipe)
-
 		no, err := strconv.ParseInt(s.TokenText(), 10, 32)
 		if err != nil {
 			return nil, err
