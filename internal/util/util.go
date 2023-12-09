@@ -64,6 +64,15 @@ func ReadFileLines[V comparable](name string, parser func(string) (V, error)) ([
 	return readToArray(file, parser)
 }
 
+func ReadFileForEachLine(name string, callback func(string) error) error {
+	file, err := os.Open(name)
+	if err != nil {
+		return err
+	}
+	defer maybeCloseFile(file)
+	return read(file, callback)
+}
+
 func maybeCloseFile(file *os.File) error {
 	if err := file.Close(); err != nil {
 		log.Printf("failed to close file %v", err)
@@ -73,21 +82,35 @@ func maybeCloseFile(file *os.File) error {
 }
 
 func readToArray[V comparable](input io.Reader, parser func(string) (V, error)) ([]V, error) {
-	scanner := bufio.NewScanner(input)
-
 	output := make([]V, 0)
-	for scanner.Scan() {
-		result, err := parser(scanner.Text())
+	err := read(input, func(line string) error {
+		result, err := parser(line)
 		if err != nil {
-			return nil, err
+			return err
 		}
 		output = append(output, result)
+		return nil
+	})
+	if err != nil {
+		return nil, err
+	}
+	return output, nil
+}
+
+func read(input io.Reader, callback func(string) error) error {
+
+	scanner := bufio.NewScanner(input)
+
+	for scanner.Scan() {
+		err := callback(scanner.Text())
+		if err != nil {
+			return err
+		}
 	}
 	if scanner.Err() != nil {
-		return nil, scanner.Err()
+		return scanner.Err()
 	}
-	// log.Printf("Output: %v", output)
-	return output, nil
+	return nil
 }
 
 func IndexOf[T comparable](collection []T, el T) int {
@@ -97,4 +120,13 @@ func IndexOf[T comparable](collection []T, el T) int {
 		}
 	}
 	return -1
+}
+
+func GCD(a, b int) int {
+	for b != 0 {
+		t := b
+		b = a % b
+		a = t
+	}
+	return a
 }

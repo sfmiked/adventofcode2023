@@ -48,6 +48,26 @@ func TestFileIntOverflow(t *testing.T) {
 func TestFileDoesNotExist(t *testing.T) {
 	_, err := ReadFileAsStrings("testdata/file_not_existing.txt")
 	assert.NotNil(t, err)
+
+	callback := func(i string) error { return nil }
+	err = ReadFileForEachLine("testdata/file_not_existing.txt", callback)
+	assert.NotNil(t, err)
+}
+
+func TestReadFileEachLine(t *testing.T) {
+
+	callback := func(i string) error { return nil }
+	err := ReadFileForEachLine("testdata/file_not_existing.txt", callback)
+	assert.NotNil(t, err)
+
+	called := 0
+	callback = func(i string) error {
+		called++
+		return nil
+	}
+	err = ReadFileForEachLine("testdata/file_lines.txt", callback)
+	assert.Nil(t, err)
+	assert.Equal(t, 3, called)
 }
 
 func TestRevereString(t *testing.T) {
@@ -149,4 +169,8 @@ func TestIndexOf(t *testing.T) {
 	assert.Equal(t, 1, IndexOf(arr, 2))
 	assert.Equal(t, 2, IndexOf(arr, 3))
 	assert.Equal(t, -1, IndexOf(arr, 4))
+}
+
+func TestGCD(t *testing.T) {
+	assert.Equal(t, 3, GCD(9, 6))
 }
