@@ -54,7 +54,7 @@ func ReadFileAsStrings(name string) ([]string, error) {
 	return ReadFileLines(name, func(v string) (string, error) { return v, nil })
 }
 
-func ReadFileLines[V comparable](name string, parser func(string) (V, error)) ([]V, error) {
+func ReadFileLines[V interface{}](name string, parser func(string) (V, error)) ([]V, error) {
 
 	file, err := os.Open(name)
 	if err != nil {
@@ -81,7 +81,7 @@ func maybeCloseFile(file *os.File) error {
 	return nil
 }
 
-func readToArray[V comparable](input io.Reader, parser func(string) (V, error)) ([]V, error) {
+func readToArray[V interface{}](input io.Reader, parser func(string) (V, error)) ([]V, error) {
 	output := make([]V, 0)
 	err := read(input, func(line string) error {
 		result, err := parser(line)
